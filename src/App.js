@@ -1,10 +1,11 @@
 
 import './App.css';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <h2 className='m-4'>Bootstrap Links Added</h2>
+      <Navbar/>
     </div>
   );
 }
