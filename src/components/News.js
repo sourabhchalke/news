@@ -58,7 +58,7 @@ export default class News extends Component {
                             return (
                                 <div className="col-sm-12 col-md-6 col-lg-4 gy-5 mb-5" key={elements.url}>
                                     <NewsItems
-
+                                        author={elements.author}
                                         title={elements.title}
                                         urlImg={elements.urlToImage}
                                         description={elements.description}
