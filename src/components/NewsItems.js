@@ -1,28 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component,Link } from 'react'
 
 export default class NewsItems extends Component {
-
     
-
   render() {
+
+    let {title,description,urlImg,url}=this.props;
+
     return (
         <>
-        <div className='row m-0'>
-            <div className='col-12 mx-auto'>
-                <div className='row'>
-                    <div className='col-12 col-md-6 col-lg-4'>
-                        <div className="card border border-0">
-                            <img src="..." className="card-img-top" alt="..." />
+                        <div className="">
+                            <img src={urlImg} className="card-img-top mx-auto"  alt="Image Not Found" />
                             <div className="card-body">
-                                <h5 className="card-title">{this.props.title}</h5>
-                                <p className="card-text">{this.props.description}</p>
-                                <a href="#" className="btn btn-primary">Go somewhere</a>
+                                <h5 className="card-title">{title}</h5>
+                                <p className="card-text">{description}</p>
+                                <a href={url} target='_blank' className="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </>
     )
   }
