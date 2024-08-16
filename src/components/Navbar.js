@@ -24,7 +24,7 @@ export default class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" aria-current="page" to="/publishedAt">
+                <Link className="nav-link" aria-current="page" to="/">
                 Latest Articles
                 </Link>
               </li>
