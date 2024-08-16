@@ -4,7 +4,7 @@ export default class NewsItems extends Component {
     
   render() {
 
-    let {title,description,urlImg,url,author}=this.props;
+    let {title,description,urlImg,url,author,publishedAt}=this.props;
 
     return (
         <>
@@ -16,6 +16,7 @@ export default class NewsItems extends Component {
                             
                                 <h5 className="card-title">{title}</h5>
                                 <p className="card-text">{description}</p>
+                                <p>{publishedAt}</p>
                                 <a href={url} target='_blank' className="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>

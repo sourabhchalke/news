@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
 import NewsItems from './NewsItems'
-import Spinner from './Spinner';
+import Spinner from './Spinner'
+import PropTypes from 'prop-types'
+
 
 export default class News extends Component {
+
+    static defaultProps = {
+        sortBy:"popularity",
+        pageSize:15,
+      }
+
+    static propTypes={
+        sortBy:PropTypes.string,
+        pageSize:PropTypes.number,
+    }
+
 
     constructor(props) {
         super(props);
@@ -16,7 +29,7 @@ export default class News extends Component {
 
     async componentDidMount() {
         console.log("Mounting....");
-        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page}&pagesize=15`;
+        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
         let data = await fetch(url);
         let parseData = await data.json();
@@ -28,7 +41,7 @@ export default class News extends Component {
     }
 
     onNext = async () => {
-        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page + 1}&pagesize=15`;
+        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page + 1}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
         let data = await fetch(url);
         let parseData = await data.json();
@@ -40,7 +53,7 @@ export default class News extends Component {
         });
     }
     onPrevious = async () => {
-        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page - 1}&pagesize=15`;
+        let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page - 1}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
         let data = await fetch(url);
         let parseData = await data.json();
@@ -57,7 +70,7 @@ export default class News extends Component {
 
             <div className='row p-0 m-0'>
                 <div className='col-12 col-md-11 mx-auto mt-5 mb-5'>
-                    <h2 className='text-center mt-5'>Tech Crunch</h2>
+                    <h2 className='text-center mt-5'>Tech Crunch - {this.props.sortBy==="popularity"?"Popular News":"Latest News"}</h2>
 
                     {this.state.loading && <Spinner/>}
 
@@ -71,6 +84,7 @@ export default class News extends Component {
                                         urlImg={elements.urlToImage}
                                         description={elements.description}
                                         url={elements.url}
+                                        publishedAt={elements.publishedAt}
                                     />
                                 </div>
                             );
