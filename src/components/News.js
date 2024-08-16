@@ -28,41 +28,56 @@ export default class News extends Component {
     }
 
     async componentDidMount() {
+        this.props.setProgress(10);
         console.log("Mounting....");
         let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
+        this.props.setProgress(20);
         let data = await fetch(url);
+        this.props.setProgress(50);
         let parseData = await data.json();
+        this.props.setProgress(70);
         console.log(parseData);
         this.setState({
             articles: parseData.articles,
             loading:false
         });
+        this.props.setProgress(100);
     }
 
     onNext = async () => {
+        this.props.setProgress(10);
         let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page + 1}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
+        this.props.setProgress(25);
         let data = await fetch(url);
+        this.props.setProgress(50);
         let parseData = await data.json();
+        this.props.setProgress(70);
         console.log(parseData);
         this.setState({
             articles: parseData.articles,
             page: this.state.page + 1,
             loading:false
         });
+        this.props.setProgress(100);
     }
     onPrevious = async () => {
+        this.props.setProgress(10);
         let url = `https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com&sortBy=${this.props.sortBy}&apiKey=17e04a031e174e38887e44cd5ee97426&page=${this.state.page - 1}&pagesize=${this.props.pageSize}`;
         this.setState({loading:true});
+        this.props.setProgress(25);
         let data = await fetch(url);
+        this.props.setProgress(50);
         let parseData = await data.json();
+        this.props.setProgress(70);
         console.log(parseData);
         this.setState({
             articles: parseData.articles,
             page: this.state.page - 1,
             loading:false
         });
+        this.props.setProgress(100);
     }
 
     render() {
