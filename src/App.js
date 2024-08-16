@@ -21,8 +21,7 @@ class App extends Component {
       <>
         <LoadingBar
           height={3.5}
-          color='#f11946'
-          
+          color='#f11946'   
           progress={this.state.progress}
         />
         <BrowserRouter>
